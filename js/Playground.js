@@ -18,18 +18,16 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE
- *
- * @flow
  */
 
-'use strict';
+"use strict";
 
-var React = require('React');
-var View = require('View');
+import React from "react";
+import View from "View";
 
 class Playground extends React.Component {
   state: {
-    content: Array<ReactElement>;
+    content: Array<ReactElement>
   };
 
   constructor() {
@@ -38,18 +36,18 @@ class Playground extends React.Component {
     const define = (name: string, render: Function) => {
       content.push(<Example key={name} render={render} />);
     };
-    // var Module = require('F8PageControl');
-    var Module = require('F8Header');
-    // var Module = require('./tabs/schedule/AddToScheduleButton');
-    // var Module = require('./rating/Header');
+    // const Module = require('F8PageControl');
+    const Module = require("F8Header");
+    // const Module = require('./tabs/schedule/AddToScheduleButton');
+    // const Module = require('./rating/Header');
     // $FlowFixMe: doesn't understand static
     Module.__cards__(define);
-    this.state = {content};
+    this.state = { content };
   }
 
   render() {
     return (
-      <View style={{backgroundColor: '#336699', flex: 1,}}>
+      <View style={{ backgroundColor: "#336699", flex: 1 }}>
         {this.state.content}
       </View>
     );
@@ -62,13 +60,10 @@ class Example extends React.Component {
   };
 
   render() {
-    const content = this.props.render(this.state.inner, (inner) => this.setState({inner}));
-    return (
-      <View>
-        {content}
-      </View>
+    const content = this.props.render(this.state.inner, inner =>
+      this.setState({ inner })
     );
-
+    return <View>{content}</View>;
   }
 }
 
